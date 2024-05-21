@@ -1,18 +1,8 @@
-# Make Real
+# wire-to-ui
 
-Use this repo as a template to create Make Real style apps like
-[makereal.tldraw.com](https://makereal.tldraw.com). To get started:
+This is an app that uses tldraw and the gpt-4-vision api to generate tailwind html/css based on a wireframe you draw.
 
-1. Use the template and clone your new repo to your computer
-2. Run `npm install` to install dependencies
-3. Get an OpenAI API key from [platform.openai.com/api-keys](https://platform.openai.com/api-keys). Make sure
-   you are at least a
-   [Tier 1](https://platform.openai.com/docs/guides/rate-limits/usage-tiers) API
-   user, which means you have access to GPT-4 Vision. You can check your tier on
-   the [OpenAI API Limits](https://platform.openai.com/account/limits).
-4. Create a `.env.local` file that contains `OPENAI_API_KEY=your api key here`
-5. Run `npm run dev`
-6. Open [localhost:3000](http://localhost:3000) and make some stuff real!
+> Disclaimer: This is a demo and is not intended for production use. It doesn't have any auth so you will go broke if you deploy it.
 
 ## How it works
 
@@ -20,7 +10,7 @@ Make Real is built with [tldraw](https://tldraw.dev), a very good React library 
 creating whiteboards and other infinite canvas experiences.
 
 To use it, first draw a mockup for a piece of UI. When
-you're ready, select the drawing, and press the Make Real button.
+you're ready, select the drawing, and press the 'Make Real' button.
 We'll capture an image of your selection, and send it to
 [OpenAI's GPT-4V](https://platform.openai.com/docs/guides/vision) along with
 instructions to turn it into a HTML file.
@@ -30,16 +20,59 @@ We take the HTML response and add it to a tldraw
 shows the response in an iframe so that you can interact with it on the canvas. If you
 want to iterate on the response, annotate the iframe, select it all, and press 'Make Real' again.
 
-## To make changes
+### Getting Started
 
-To change how Make Real works, start from the [`makeReal()`](./app/makeReal.tsx)
-function. From there, you can change the prompt that gets sent to gpt-4.
+> You will need an OpenAI API key with access to the GPT-4 Vision API.
 
-If you'd like Make Real to create something other than HTML, you'll need to
-either update the [`PreviewShape`](./app/PreviewShape/PreviewShape.tsx) to
-display something different, or use one of tldraw's built-in shapes like image
-or text.
+Before you begin, clone the project repository to your local machine:
+```bash
+git clone https://github.com/acidtib/wire-to-ui.git
+cd wire-to-ui
+```
 
-## The dangerous API key input method
+**Set Up Your OpenAI API Key**  
+Create a `.env.local` file in the root directory with your OpenAI API key:
+```bash
+cp .env.local.example .env.local
+```
 
-For prototyping or at least until the vision APIs are able to support higher usage limits, we've also included the `RiskyButCoolAPIKeyInput`, similar to the one found on [makereal.tldraw.com](https://makereal.tldraw.com). Please use this as carefully and ethically as you can, as users should be reluctant to add API keys to public sites.
+### Running Locally
+
+**Install Dependencies**  
+Install all the necessary dependencies:
+```bash
+npm install
+```
+
+**Start the Development Server**  
+Launch your development server:
+```bash
+npm run dev
+```
+
+**View Your Application**  
+Access your app by visiting [http://localhost:3000](http://localhost:3000) in your web browser.
+
+
+### Running with Docker
+
+Build local image
+``` bash
+docker build -t wire-to-ui:latest .
+```
+
+Run local image
+``` bash
+docker run \
+   -d \
+   -p 3000:3000 \
+   -e OPENAI_API_KEY=sk-xxxxxxxxx \
+   wire-to-ui:latest
+```
+
+**Or run with docker-compose**
+``` bash
+docker-compose up -d
+```
+
+After the container is up, you can access the app by visiting [http://localhost:3000](http://localhost:3000) in your browser.
