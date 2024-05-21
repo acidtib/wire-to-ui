@@ -11,6 +11,7 @@
   "dependencies": {
     "@tldraw/tldraw": "^2.0.0-canary.d0f6ef80fcf9",
     "next": "^14.2.3",
+    "openai": "^4.47.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

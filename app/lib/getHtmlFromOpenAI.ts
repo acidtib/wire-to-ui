@@ -1,3 +1,4 @@
+import { OpenAI } from "openai";
 import { PreviewShape } from '../PreviewShape/PreviewShape'
 import {
 	OPENAI_USER_PROMPT,
@@ -25,6 +26,8 @@ export async function getHtmlFromOpenAI({
 	previousPreviews?: PreviewShape[]
 }) {
 	if (!apiKey) throw Error('You need to provide an API key (sorry)')
+		
+	// const openai = new OpenAI();
 
 	const messages: GPT4VCompletionRequest['messages'] = [
 		{
@@ -96,7 +99,7 @@ export async function getHtmlFromOpenAI({
 		max_tokens: 4096,
 		temperature: 0,
 		messages,
-		seed: 42,
+		seed: 420,
 		n: 1,
 	}
 
