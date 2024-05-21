@@ -9,7 +9,10 @@ export function MakeRealButton() {
 	const handleClick = useCallback(async () => {
 		try {
 			const input = document.getElementById('openai_key_risky_but_cool') as HTMLInputElement
-			const apiKey = input?.value ?? null
+			// const apiKey = input?.value ?? null
+			// load key from env
+			const apiKey = process.env.OPENAI_API_KEY ?? null
+			
 			if (!apiKey) throw Error('Make sure the input includes your API Key!')
 			await makeReal(editor, apiKey)
 		} catch (e) {
