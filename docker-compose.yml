@@ -1,0 +1,10 @@
+
+services:
+  wire-to-ui:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    # environment:
+    #   - OPENAI_API_KEY=OPENAI_API_KEY
